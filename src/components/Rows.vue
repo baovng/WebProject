@@ -95,9 +95,10 @@ export default {
 </script>
 
 <template>
+  <!-- Modal -->
   <div
     class="modal fade"
-    id="exampleModal1"
+    id="exampleModal"
     tabindex="-1"
     role="dialog"
     aria-labelledby="exampleModalLabel"
@@ -106,15 +107,15 @@ export default {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+          <h5 class="modal-title" id="exampleModalLabel">
+            Default Bootstrap Modal
+          </h5>
           <button
+            class="btn-close"
             type="button"
-            class="close"
-            data-dismiss="modal"
+            data-bs-dismiss="modal"
             aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
+          ></button>
         </div>
         <div class="modal-body">
           <form>
@@ -148,13 +149,16 @@ export default {
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
-          </button>
           <button
+            class="btn btn-secondary"
+            type="button"
+            data-bs-dismiss="modal"
+          >
+            Close</button
+          ><button
             type="button"
             @click="updateRow()"
-            data-dismiss="modal"
+            data-bs-dismiss="modal"
             class="btn btn-primary"
           >
             Save changes
@@ -163,6 +167,7 @@ export default {
       </div>
     </div>
   </div>
+
   <tr v-for="user in users" :key="user.id">
     <td scope="col">{{ user.id }}</td>
     <td scope="col">
@@ -184,8 +189,8 @@ export default {
       <button
         type="button"
         class="btn btn-primary"
-        data-toggle="modal"
-        data-target="#exampleModal1"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
         @click="Update(user.id)"
         style="margin-left: 10px"
       >
@@ -197,7 +202,7 @@ export default {
 
 <style scoped>
 a {
-  color: #42b983;
+  color: #0061f2;
 }
 
 .btn-disabled {
@@ -211,7 +216,7 @@ a {
   color: green;
 }
 .card-body {
-  background-color: purple;
+  background-color: #0061f2;
 }
 .active {
   color: blue;

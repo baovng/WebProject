@@ -198,7 +198,7 @@ export default {
 
 <style scoped>
 a {
-  color: purple;
+  color: #0061f2;
 }
 
 .card-title {
@@ -206,6 +206,6 @@ a {
 }
 
 .card-body {
-  background-color: purple;
+  background-color: #0061f2;
 }
 </style>

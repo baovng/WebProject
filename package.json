@@ -10,6 +10,7 @@
   "dependencies": {
     "@jobinsjp/vue3-datatable": "^1.0.15",
     "axios": "^0.26.1",
+    "primeicons": "^5.0.0",
     "primevue": "^3.12.5",
     "simple-datatables": "^3.2.0",
     "vue": "^3.2.25",

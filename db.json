@@ -5,7 +5,7 @@
       "name": null,
       "email": null,
       "role": "null",
-      "inactive": false
+      "inactive": true
     },
     {
       "id": 1,
@@ -16,24 +16,24 @@
     },
     {
       "id": 2,
-      "name": "Gino Simonis",
+      "name": "Gino Simoni",
       "email": "Ubaldo.Durgan@gmail.com",
-      "role": "omnis",
+      "role": "SuperFrog Student",
       "inactive": false
     },
     {
       "id": 3,
       "name": "Derek Howe",
       "email": "Hester_Goyette43@yahoo.com",
-      "role": "aspernatur",
-      "inactive": true
+      "role": "SuperFrog Student",
+      "inactive": false
     },
     {
       "id": 4,
       "name": "Bo Gorczany",
       "email": "Misael.Schuster@yahoo.com",
-      "role": "officiis",
-      "inactive": true
+      "role": "SuperFrog Student",
+      "inactive": false
     },
     {
       "id": 5,
@@ -67,8 +67,8 @@
       "id": 9,
       "name": "Zachery Wolf",
       "email": "Ted.Renner@yahoo.com",
-      "role": "fugiat",
-      "inactive": false
+      "role": "SuperFrog Student",
+      "inactive": true
     },
     {
       "name": "tanm",
@@ -100,7 +100,7 @@
       "name": "Bao",
       "email": "t@gmail.com",
       "role": "Director",
-      "inactive": true,
+      "inactive": false,
       "id": 14
     },
     {
@@ -128,7 +128,7 @@
       "name": "asbhus",
       "email": "fbdsg",
       "role": "jhdf jhd ",
-      "inactive": true,
+      "inactive": false,
       "id": 18
     },
     {
@@ -142,14 +142,14 @@
       "name": null,
       "email": null,
       "role": null,
-      "inactive": true,
+      "inactive": false,
       "id": 20
     },
     {
       "name": "samuel",
       "email": "k",
       "role": "k",
-      "inactive": false,
+      "inactive": true,
       "id": 21
     },
     {
@@ -199,6 +199,34 @@
       "role": "",
       "inactive": false,
       "id": 27
+    },
+    {
+      "name": "Sahil",
+      "email": "tanmay kejriwal28@gmail.com",
+      "role": "SuperFrog Student",
+      "inactive": false,
+      "id": 28
+    },
+    {
+      "name": "b ",
+      "email": "",
+      "role": "",
+      "inactive": false,
+      "id": 29
+    },
+    {
+      "name": "Tanmay",
+      "email": "dcbe",
+      "role": "Spirit Director",
+      "inactive": false,
+      "id": 30
+    },
+    {
+      "name": "uybeub",
+      "email": "xyz@gmail.com",
+      "role": "Customer",
+      "inactive": false,
+      "id": 31
     }
   ],
   "requests": [

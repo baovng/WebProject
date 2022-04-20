@@ -1,8 +1,46 @@
+<script>
+import { ref } from "vue";
+import Rows from "../components/Rows.vue";
+
+import axios from "axios";
+
+export default {
+  name: "Table",
+  data() {
+    return {
+      inputName: "",
+      inputEmail: "",
+      inputRole: "",
+      selected: "",
+      testbool: false,
+    };
+  },
+  components: {
+    Rows,
+  },
+  methods: {
+    addUser() {
+      var Name = this.inputName;
+      var Email = this.inputEmail;
+      var Role = this.selected;
+      const res = axios.post(`http://localhost:3000/users`, {
+        name: Name,
+        email: Email,
+        role: Role,
+        inactive: false,
+      });
+      console.log(res);
+      location.reload();
+    },
+  },
+};
+</script>
+
 <template>
-  <!-- Modal Add User-->
+  <!-- Modal -->
   <div
     class="modal fade"
-    id="exampleModal"
+    id="exampleModal3"
     tabindex="-1"
     role="dialog"
     aria-labelledby="exampleModalLabel"
@@ -11,7 +49,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
           <button
             class="btn-close"
             type="button"
@@ -19,7 +57,37 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body">...</div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Name</label>
+              <input
+                v-model="inputName"
+                type="text"
+                class="form-control"
+                id="recipient-name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Email</label>
+              <input
+                type="text"
+                class="form-control"
+                id="recipient-email"
+                v-model="inputEmail"
+              />
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Role</label>
+              <select class="form-control" v-model="selected">
+                <option disabled value="">Please select one</option>
+                <option>Customer</option>
+                <option>SuperFrog Student</option>
+                <option>Spirit Director</option>
+              </select>
+            </div>
+          </form>
+        </div>
         <div class="modal-footer">
           <button
             class="btn btn-secondary"
@@ -27,254 +95,131 @@
             data-bs-dismiss="modal"
           >
             Close</button
-          ><button class="btn btn-primary" type="button">Save changes</button>
+          ><button
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            type="button"
+            @click="addUser()"
+          >
+            Save changes
+          </button>
         </div>
       </div>
     </div>
   </div>
-  <body class="nav-fixed mt-15">
-    <div id="">
-      <div id="">
-        <main>
-          <div class="container-xl"></div>
-
-          <!-- Main page content-->
-          <div class="container-xl px-4 mt-1">
-            <div class="card mb-4">
-              <div class="card-header">Users</div>
-              <div class="card-header">
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                >
-                  Add User
-                </button>
-              </div>
-
-              <div class="card-body">
-                <table id="datatablesSimple">
-                  <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Role</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Id</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Role</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr v-for="user in users" :key="user.id">
-                      <td scope="col">{{ user.id }}</td>
-                      <td scope="col">
-                        <div>{{ user.name }}</div>
-                      </td>
-                      <td scope="col">{{ user.email }}</td>
-                      <td scope="col">{{ user.role }}</td>
-                      <td scope="col" :class="user.inactive ? 'in' : 'ac'">
-                        <span> </span
-                        >{{ user.inactive ? "Inactive" : "Active" }}
-                      </td>
-                      <td scope="col">
-                        <button
-                          class="btn"
-                          :class="!user.inactive ? 'btn-danger' : 'btn-success'"
-                          @click="deleteRow(user.id)"
-                        >
-                          {{ user.inactive ? "Undo" : "Delete" }}
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-primary"
-                          data-toggle="modal"
-                          data-target="#exampleModal1"
-                          @click="Update(user.id)"
-                          style="margin-left: 10px"
-                        >
-                          Edit User
-                        </button>
-                      </td>
-                    </tr>
-
-                    <tr></tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Sahil</td>
-                      <td>xyz@gmail.com</td>
-                      <td>Admin</td>
-                      <td>
-                        <div class="badge bg-primary text-white rounded-pill">
-                          Full-time
-                        </div>
-                      </td>
-                      <td>
-                        <button
-                          class="btn btn-datatable btn-icon btn-transparent-dark me-2"
-                        >
-                          <i data-feather="edit"></i>
-                        </button>
-                        <button
-                          class="btn btn-datatable btn-icon btn-transparent-dark"
-                        >
-                          <i data-feather="trash-2"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Tanmay</td>
-                      <td>xyz@gmail.com</td>
-                      <td>Admin</td>
-                      <td>
-                        <div class="badge bg-primary text-white rounded-pill">
-                          Full-time
-                        </div>
-                      </td>
-                      <td>
-                        <button
-                          class="btn btn-datatable btn-icon btn-transparent-dark me-2"
-                        >
-                          <i data-feather="edit"></i>
-                        </button>
-                        <button
-                          class="btn btn-datatable btn-icon btn-transparent-dark"
-                        >
-                          <i data-feather="trash-2"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </main>
-        <footer class="footer-admin mt-5 footer-light">
-          <div class="container-xl px-4">
-            <div class="row">
-              <div class="col-md-6 small">
-                Copyright &copy; Your Website 2021
-              </div>
-              <div class="col-md-6 text-md-end small">
-                <a href="#!">Privacy Policy</a>
-                &middot;
-                <a href="#!">Terms &amp; Conditions</a>
-              </div>
-            </div>
-          </div>
-        </footer>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Director User Management</h5>
+          <button
+            class="btn btn-light"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal3"
+          >
+            Add User
+          </button>
+        </div>
       </div>
+      <div
+        class="modal fade"
+        id="exampleModal2"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Name</label
+                  >
+                  <input
+                    v-model="inputName"
+                    type="text"
+                    class="form-control"
+                    id="recipient-name"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Email</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="recipient-email"
+                    v-model="inputEmail"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Role</label>
+                  <select class="form-control" v-model="selected">
+                    <option disabled value="">Please select one</option>
+                    <option>Customer</option>
+                    <option>SuperFrog Student</option>
+                    <option>Spirit Director</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" @click="addUser" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody">
+          <Rows></Rows>
+        </tbody>
+      </table>
     </div>
   </body>
 </template>
 
-<script>
-/*!
- * Start Bootstrap - SB Admin Pro v2.0.0 (https://shop.startbootstrap.com/product/sb-admin-pro)
- * Copyright 2013-2021 Start Bootstrap
- * Licensed under SEE_LICENSE (https://github.com/StartBootstrap/sb-admin-pro/blob/master/LICENSE)
- */
+<style scoped>
+a {
+  color: purple;
+}
 
-// Activate feather
+.card-title {
+  color: white;
+}
 
-window.addEventListener("DOMContentLoaded", (event) => {
-  feather.replace();
-
-  const datatablesSimple = document.getElementById("datatablesSimple");
-  if (datatablesSimple) {
-    new simpleDatatables.DataTable(datatablesSimple);
-  }
-});
-
-import axios from "axios";
-
-export default {
-  name: "Rows",
-  data() {
-    return {
-      users: [],
-      errors: [],
-      inputName: "",
-      inputEmail: "",
-      inputRole: "",
-      selected: "",
-      uid: "",
-      testbool: false,
-    };
-  },
-  methods: {
-    async deleteRow(id) {
-      try {
-        var curr_status = this.users[id].inactive;
-        await axios.patch(`${`http://localhost:3000/users`}/${id}`, {
-          inactive: !curr_status,
-        });
-        this.users = this.users.map((user) => {
-          if (user.id === id) {
-            user.inactive = !user.inactive;
-          }
-          //console.log(user)
-          return user;
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    },
-
-    Update(id) {
-      this.inputName = this.users[id].name;
-      this.inputEmail = this.users[id].email;
-      this.selected = this.users[id].role;
-      this.uid = id;
-    },
-    async updateRow() {
-      var id = this.uid;
-      var Name = this.inputName;
-      var Email = this.inputEmail;
-      var Role = this.selected;
-      console.log(Name);
-      try {
-        var curr_status = this.users[id].inactive;
-        await axios.patch(`${`http://localhost:3000/users`}/${id}`, {
-          name: Name,
-          email: Email,
-          role: Role,
-        });
-        this.users = this.users.map((user) => {
-          if (user.id === id) {
-            user.name = Name;
-            user.email = Email;
-            user.role = Role;
-          }
-          return user;
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    },
-  },
-
-  // Fetches posts when the component is created.
-  async created() {
-    try {
-      const response = await axios.get(`http://localhost:3000/users`);
-      this.users = response.data;
-      console.log(response.data);
-    } catch (e) {
-      this.errors.push(e);
-    }
-  },
-};
-</script>
+.card-body {
+  background-color: #0061f2;
+}
+</style>
