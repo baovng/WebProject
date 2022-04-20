@@ -19,7 +19,7 @@
           <router-link class="nav-link" to="/request">Request</router-link>
           <router-link class="nav-link" to="/login">Login</router-link>
           <router-link class="nav-link" to="/signup">Sign Up</router-link>
-          <router-link class="nav-link" to="/profile">Profile</router-link>
+          <router-link class="nav-link" to="/profile">Profile(SF)</router-link>
           <router-link class="nav-link" to="/dashboardSD"
             >Dashboard(SD)</router-link
           >

@@ -1,0 +1,179 @@
+<script>
+// import { ref } from 'vue';
+// import axios from 'axios';
+
+// defineProps({
+//   id: String,
+//   name: String,
+//   email: String,
+//   role: String,
+//   status: String,
+// });
+// $('#myModal').on('shown.bs.modal', function () {
+//   $('#myInput').trigger('focus')
+// })
+
+import axios from "axios";
+
+export default {
+  name: "Rows",
+  data() {
+    return {
+      requests: [],
+      admin: 0,
+      superfrog: 0,
+      customer: 0,
+    };
+  },
+  props: {
+    role: String,
+  },
+  computed: {
+    roledecider() {
+      if (this.role == "Admin") {
+        this.admin = 1;
+      }
+      if (this.role == "SuperFrog") {
+        this.superfrog = 1;
+      }
+      if (this.role == "Customer") {
+        this.customer = 1;
+      }
+    },
+  },
+
+  methods: {
+    async checker(id, status1) {
+      alert(this.role);
+      this.requests = this.requests.map((req) => {
+        if (req.id === id) {
+          req.status = status1;
+        }
+        return req;
+      });
+      await axios
+        .patch(`${`http://localhost:3000/requests`}/${id}`, {
+          status: status1,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+  },
+
+  mounted() {
+    this.roledecider;
+  },
+  // Fetches posts when the component is created.
+  async created() {
+    try {
+      const response = await axios.get(`http://localhost:3000/requests`);
+      this.requests = response.data;
+      console.log(this.requests);
+    } catch (e) {
+      this.errors.push(e);
+    }
+  },
+};
+</script>
+
+<template>
+  <!-- Modal -->
+  <tr v-for="req in requests" :key="req.id">
+    <td scope="col">{{ req.id }}</td>
+    <td scope="col">{{ req.ename }}</td>
+    <td scope="col">{{ req.date }}</td>
+    <td scope="col">{{ req.stime }}</td>
+    <td scope="col">{{ req.etime }}</td>
+    <td scope="col">{{ req.theme }}</td>
+    <td scope="col">{{ req.desc }}</td>
+    <td scope="col">{{ req.email }}</td>
+    <td scope="col">{{ req.assigned }}</td>
+    <td scope="col">{{ req.status }}</td>
+    <td v-if="admin" scope="col">
+      <div class="dropdown">
+        <button
+          class="btn btn-primary dropdown-toggle"
+          id="dropdownMenuButton"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Update Status
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a
+            @click="checker(req.id, 'Approved')"
+            class="dropdown-item"
+            href="#!"
+            >Approved</a
+          >
+          <a class="dropdown-item" @click="checker(req.id, 'Denied')" href="#!"
+            >Denied</a
+          >
+          <a
+            class="dropdown-item"
+            @click="checker(req.id, 'Assigned')"
+            href="#!"
+            >Assigned</a
+          >
+        </div>
+      </div>
+    </td>
+    <td v-if="superfrog" scope="col">
+      <div class="dropdown">
+        <button
+          class="btn btn-primary dropdown-toggle"
+          id="dropdownMenuButton"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Choose
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a
+            class="dropdown-item"
+            @click="checker(req.id, 'Signed Up')"
+            href="#!"
+            >Sign Up</a
+          >
+          <a
+            class="dropdown-item"
+            @click="checker(req.id, 'Finished')"
+            href="#!"
+            >Finish</a
+          >
+        </div>
+      </div>
+    </td>
+  </tr>
+</template>
+
+<style scoped>
+a {
+  color: #0061f2;
+}
+
+.btn-disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.in {
+  color: red;
+}
+.ac {
+  color: green;
+}
+.card-body {
+  background-color: #0061f2;
+}
+.active {
+  color: blue;
+}
+</style>

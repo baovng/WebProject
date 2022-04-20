@@ -23,6 +23,7 @@
                               >First Name</label
                             >
                             <input
+                              v-model="iname"
                               class="form-control"
                               id="inputFirstName"
                               type="text"
@@ -37,6 +38,7 @@
                               >Last Name</label
                             >
                             <input
+                              v-model="ilname"
                               class="form-control"
                               id="inputLastName"
                               type="text"
@@ -51,6 +53,7 @@
                           >Email</label
                         >
                         <input
+                          v-model="iemail"
                           class="form-control"
                           id="inputEmailAddress"
                           type="email"
@@ -63,6 +66,7 @@
                       <div class="mb-3">
                         <label class="small mb-1" for="name">Event Name</label>
                         <input
+                          v-model="ieventname"
                           class="form-control"
                           id="name"
                           type="text"
@@ -80,6 +84,7 @@
                               >Date</label
                             >
                             <input
+                              v-model="idate"
                               class="form-control"
                               id="date"
                               type="date"
@@ -94,6 +99,7 @@
                               >Location</label
                             >
                             <input
+                              v-model="ilocation"
                               class="form-control"
                               id="location"
                               type="location"
@@ -111,6 +117,7 @@
                               >Start Time</label
                             >
                             <input
+                              v-model="istime"
                               class="form-control"
                               id="stime"
                               type="time"
@@ -125,6 +132,7 @@
                               >End Time</label
                             >
                             <input
+                              v-model="ietime"
                               class="form-control"
                               id="etime"
                               type="time"
@@ -141,6 +149,7 @@
                           <div class="mb-3">
                             <label class="small mb-1" for="theme">Theme</label>
                             <input
+                              v-model="itheme"
                               class="form-control"
                               id="theme"
                               type="text"
@@ -155,6 +164,7 @@
                               >Description</label
                             >
                             <input
+                              v-model="idesc"
                               class="form-control"
                               id="etime"
                               type="text"
@@ -164,9 +174,13 @@
                         </div>
                       </div>
                       <!-- Form Group (create account submit)-->
-                      <a class="btn btn-primary btn-block" href=""
-                        >Send Request</a
+                      <button
+                        class="btn btn-primary btn-block"
+                        type="reset"
+                        @click="addReq()"
                       >
+                        Send Request
+                      </button>
                     </form>
                   </div>
                 </div>
@@ -195,4 +209,49 @@
   </body>
 </template>
 
+<script>
+import { ref } from "vue";
+import Rows from "../components/Rows.vue";
+import Requests from "../components/Requests.vue";
+
+import axios from "axios";
+
+export default {
+  name: "Table",
+  data() {
+    return {
+      iname: "",
+      ilname: "",
+      ilocation: "",
+      itheme: "",
+      istime: "",
+      ietime: "",
+      idesc: "",
+      iemail: "",
+      ieventname: "",
+      idate: "",
+    };
+  },
+  components: {},
+  methods: {
+    addReq() {
+      console.log(this.iname);
+      const res = axios.post(`http://localhost:3000/requests`, {
+        name: this.iname,
+        lname: this.ilname,
+        location: this.ilocation,
+        theme: this.itheme,
+        stime: this.istime,
+        etime: this.ietime,
+        desc: this.idesc,
+        email: this.iemail,
+        ename: this.ieventname,
+        date: this.idate,
+        status: "Created",
+        assigned: "Not Assigned Yet",
+      });
+    },
+  },
+};
+</script>
 <style></style>

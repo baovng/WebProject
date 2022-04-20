@@ -1,6 +1,7 @@
 <script>
 import { ref } from "vue";
 import Rows from "../components/Rows.vue";
+import Requests from "../components/Requests.vue";
 
 import axios from "axios";
 
@@ -13,10 +14,12 @@ export default {
       inputRole: "",
       selected: "",
       testbool: false,
+      role: "Admin",
     };
   },
   components: {
     Rows,
+    Requests,
   },
   methods: {
     addUser() {
@@ -204,6 +207,34 @@ export default {
         </thead>
         <tbody id="userTableBody">
           <Rows></Rows>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Request Management</div>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Event Date</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">End Time</th>
+            <th scope="col">Theme</th>
+            <th scope="col">Description</th>
+            <th scope="col">Email</th>
+            <th scope="col">Super Frog Assigned</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody">
+          <Requests :role="role"></Requests>
         </tbody>
       </table>
     </div>
