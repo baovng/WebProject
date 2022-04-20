@@ -20,6 +20,7 @@ export default {
   data() {
     return {
       requests: [],
+      superfrogs: [],
       admin: 0,
       superfrog: 0,
       customer: 0,
@@ -43,6 +44,26 @@ export default {
   },
 
   methods: {
+    async assigner(reqid, frogid, name) {
+      this.requests = this.requests.map((req) => {
+        if (req.id === reqid) {
+          req.status = "Assigned";
+          req.assigned = name;
+        }
+        return req;
+      });
+      await axios
+        .patch(`${`http://localhost:3000/requests`}/${reqid}`, {
+          status: "Assigned",
+          assigned: name,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
     async checker(id, status1) {
       this.requests = this.requests.map((req) => {
         if (req.id === id) {
@@ -70,8 +91,11 @@ export default {
   async created() {
     try {
       const response = await axios.get(`http://localhost:3000/requests`);
+      const response_super = await axios.get(
+        `http://localhost:3000/superfrogs`
+      );
+      this.superfrogs = response_super.data;
       this.requests = response.data;
-      console.log(this.requests);
     } catch (e) {
       this.errors.push(e);
     }
@@ -123,6 +147,31 @@ export default {
         </div>
       </div>
     </td>
+
+    <td v-if="admin" scope="col">
+      <div class="dropdown">
+        <button
+          class="btn btn-primary dropdown-toggle"
+          id="dropdownMenuButton1"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Assign SuperFrog
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <a
+            class="dropdown-item"
+            v-for="frog in superfrogs"
+            :key="frog.id"
+            @click="assigner(req.id, frog.id, frog.name)"
+            >{{ frog.name }}</a
+          >
+        </div>
+      </div>
+    </td>
+
     <td v-if="superfrog" scope="col">
       <div class="dropdown">
         <button
@@ -228,31 +277,31 @@ export default {
     <td>
       <div class="step mb-5">
         <div class="step-item" :class="req.status == 'Created' ? 'active' : ''">
-          <a class="step-item-link" href="#!">Created</a>
+          <a class="step-item-link" href="">Created</a>
         </div>
         <div
           class="step-item"
           :class="req.status == 'Approved' ? 'active' : ''"
         >
-          <a class="step-item-link" href="#!">Approved</a>
+          <a class="step-item-link" href="">Approved</a>
         </div>
         <div
           class="step-item"
           :class="req.status == 'Signed Up' ? 'active' : ''"
         >
-          <a class="step-item-link" href="#!">Signed Up</a>
+          <a class="step-item-link" href="">Signed Up</a>
         </div>
         <div
           class="step-item"
           :class="req.status == 'Assigned' ? 'active' : ''"
         >
-          <a class="step-item-link" href="#!">Assigned</a>
+          <a class="step-item-link" href="">Assigned</a>
         </div>
         <div
           class="step-item"
           :class="req.status == 'Finished' ? 'active' : ''"
         >
-          <a class="step-item-link" href="#!">Finished</a>
+          <a class="step-item-link" href="">Finished</a>
         </div>
       </div>
     </td>

@@ -231,6 +231,8 @@ export default {
             <th scope="col">Super Frog Assigned</th>
             <th scope="col">Status</th>
             <th scope="col">Actions</th>
+            <th scope="col">Assign</th>
+            <th scope="col">Progress</th>
           </tr>
         </thead>
         <tbody id="userTableBody">
