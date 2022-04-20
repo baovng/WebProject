@@ -22,6 +22,7 @@ export default {
       requests: [],
       filteredreq: [],
       superfrogs: [],
+      users: [],
       admin: 0,
       superfrog: 0,
       customer: 0,
@@ -58,6 +59,17 @@ export default {
       }
       console.log(this.requests);
     },
+
+    superfrogPopulate() {
+      for (var i = 0; i < this.users.length; i++) {
+        if (
+          this.users[i].role == "SuperFrog" &&
+          this.users[i].inactive == false
+        ) {
+          this.superfrogs.push(this.users[i]);
+        }
+      }
+    },
   },
 
   methods: {
@@ -82,17 +94,23 @@ export default {
         });
     },
     async checker(id, status1) {
+      var temp = "";
       this.requests = this.requests.map((req) => {
         if (req.id === id) {
           req.status = status1;
-          req.assigned = "";
+          if (status1 == "Assigned") {
+            temp = this.username;
+          } else {
+            temp = "";
+          }
+          req.assigned = temp;
         }
         return req;
       });
       await axios
         .patch(`${`http://localhost:3000/requests`}/${id}`, {
           status: status1,
-          assigned: "",
+          assigned: temp,
         })
         .then(function (response) {
           console.log(response);
@@ -110,15 +128,14 @@ export default {
   async created() {
     try {
       const response = await axios.get(`http://localhost:3000/requests`);
-      const response_super = await axios.get(
-        `http://localhost:3000/superfrogs`
-      );
-      this.superfrogs = response_super.data;
+      const response_super = await axios.get(`http://localhost:3000/users`);
+      this.users = response_super.data;
       this.requests = response.data;
     } catch (e) {
       this.errors.push(e);
     }
     this.reqbasedonUser;
+    this.superfrogPopulate;
   },
 };
 </script>
@@ -210,6 +227,9 @@ export default {
             class="dropdown-item"
             @click="checker(req.id, 'Finished')"
             >Finish</a
+          >
+          <a v-if="req.status == 'Finished' || req.status == 'Denied'"
+            >Already Finished</a
           >
           <a v-else class="dropdown-item">Wait for Director</a>
         </div>

@@ -85,7 +85,7 @@ export default {
               <select class="form-control" v-model="selected">
                 <option disabled value="">Please select one</option>
                 <option>Customer</option>
-                <option>SuperFrog Student</option>
+                <option>SuperFrog</option>
                 <option>Spirit Director</option>
               </select>
             </div>
@@ -173,7 +173,7 @@ export default {
                   <select class="form-control" v-model="selected">
                     <option disabled value="">Please select one</option>
                     <option>Customer</option>
-                    <option>SuperFrog Student</option>
+                    <option>SuperFrog</option>
                     <option>Spirit Director</option>
                   </select>
                 </div>

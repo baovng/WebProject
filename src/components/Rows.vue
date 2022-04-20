@@ -27,12 +27,13 @@ export default {
       selected: "",
       uid: "",
       testbool: false,
+      name: "",
     };
   },
   methods: {
     async deleteRow(id) {
       try {
-        var curr_status = this.users[id].inactive;
+        var curr_status = this.users[id - 1].inactive;
         await axios.patch(`${`http://localhost:3000/users`}/${id}`, {
           inactive: !curr_status,
         });
@@ -49,9 +50,9 @@ export default {
     },
 
     Update(id) {
-      this.inputName = this.users[id].name;
-      this.inputEmail = this.users[id].email;
-      this.selected = this.users[id].role;
+      this.inputName = this.users[id - 1].name;
+      this.inputEmail = this.users[id - 1].email;
+      this.selected = this.users[id - 1].role;
       this.uid = id;
     },
     async updateRow() {
@@ -61,7 +62,7 @@ export default {
       var Role = this.selected;
       console.log(Name);
       try {
-        var curr_status = this.users[id].inactive;
+        var curr_status = this.users[id - 1].inactive;
         await axios.patch(`${`http://localhost:3000/users`}/${id}`, {
           name: Name,
           email: Email,
@@ -107,9 +108,7 @@ export default {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            Default Bootstrap Modal
-          </h5>
+          <h5 class="modal-title" id="exampleModalLabel">Update User</h5>
           <button
             class="btn-close"
             type="button"
@@ -142,7 +141,7 @@ export default {
               <select class="form-control" v-model="selected">
                 <option disabled value="">Please select one</option>
                 <option>Customer</option>
-                <option>SuperFrog Student</option>
+                <option>SuperFrog</option>
                 <option>Spirit Director</option>
               </select>
             </div>

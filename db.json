@@ -2,39 +2,17 @@
   "users": [
     {
       "id": 1,
-      "name": "Aurelia Nolan",
-      "email": "Isadore94@gmail.com",
-      "role": "Spirit Director",
-      "inactive": true,
-      "status": "Approved"
-    },
-    {
-      "name": "Sahil",
+      "name": "Kartik",
       "email": "tanmay kejriwal28@gmail.com",
-      "role": "SuperFrog Student",
-      "inactive": false,
-      "id": 28
-    },
-    {
-      "name": "b ",
-      "email": "",
-      "role": "",
-      "inactive": false,
-      "id": 29
-    },
-    {
-      "name": "Tanmay",
-      "email": "dcbe",
       "role": "Spirit Director",
-      "inactive": false,
-      "id": 30
+      "inactive": false
     },
     {
-      "name": "uybeub",
+      "name": "Test",
       "email": "xyz@gmail.com",
-      "role": "Customer",
+      "role": "SuperFrog",
       "inactive": false,
-      "id": 31
+      "id": 2
     }
   ],
   "requests": [
@@ -49,7 +27,7 @@
       "email": "sahil@gmail.com",
       "ename": "Birthday Party",
       "date": "2022-04-22",
-      "status": "Denied",
+      "status": "Approved",
       "assigned": "",
       "id": 1
     },
@@ -65,7 +43,7 @@
       "ename": "KEJ",
       "date": "2022-04-08",
       "status": "Assigned",
-      "assigned": "Not Assigned Yet",
+      "assigned": "Kaly",
       "id": 2
     }
   ],
