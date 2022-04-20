@@ -18,11 +18,12 @@
       "id": 2
     },
     {
-      "name": "xyk",
+      "name": "Sam",
       "email": "xyk@gmail.com",
       "role": "SuperFrog",
       "inactive": false,
-      "id": 2
+      "id": 3,
+      "lname": "Callan"
     }
   ],
   "requests": [

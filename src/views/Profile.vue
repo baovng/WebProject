@@ -95,7 +95,11 @@
                         </div>
                       </div>
                       <!-- Save changes button-->
-                      <button class="btn btn-primary" type="button">
+                      <button
+                        class="btn btn-primary"
+                        type="button"
+                        @click="Update()"
+                      >
                         Save changes
                       </button>
                     </form>
@@ -169,13 +173,23 @@ export default {
       fname: "",
       lname: "",
       input_email: "",
+      id: "",
     };
   },
   components: {
     Requests,
   },
-  methods: {},
-  computed: {},
+  methods: {
+    async Update() {
+      alert("k");
+      await axios.patch(`${`http://localhost:3000/users`}/${this.id}`, {
+        name: this.fname,
+        email: this.input_email,
+        lname: this.lname,
+      });
+    },
+  },
+
   async created() {
     try {
       const response = await axios.get(`http://localhost:3000/users`);
@@ -186,6 +200,7 @@ export default {
         }
       }
       //binding values
+      this.id = this.loggedInUser.id;
       this.fname = this.loggedInUser.name;
       this.lname = this.loggedInUser.lname;
       this.input_email = this.loggedInUser.email;
