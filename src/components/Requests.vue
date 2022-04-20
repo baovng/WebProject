@@ -16,10 +16,11 @@
 import axios from "axios";
 
 export default {
-  name: "Rows",
+  name: "Requests",
   data() {
     return {
       requests: [],
+      filteredreq: [],
       superfrogs: [],
       admin: 0,
       superfrog: 0,
@@ -28,6 +29,7 @@ export default {
   },
   props: {
     role: String,
+    username: String,
   },
   computed: {
     roledecider() {
@@ -40,6 +42,21 @@ export default {
       if (this.role == "Customer") {
         this.customer = 1;
       }
+    },
+
+    reqbasedonUser() {
+      for (var i = 0; i < this.requests.length; i++) {
+        if (
+          this.requests[i].assigned == this.username ||
+          this.requests[i].status == "Approved"
+        ) {
+          this.filteredreq.push(this.requests[i]);
+        }
+      }
+      if (this.role == "SuperFrog") {
+        this.requests = this.filteredreq;
+      }
+      console.log(this.requests);
     },
   },
 
@@ -68,12 +85,14 @@ export default {
       this.requests = this.requests.map((req) => {
         if (req.id === id) {
           req.status = status1;
+          req.assigned = "";
         }
         return req;
       });
       await axios
         .patch(`${`http://localhost:3000/requests`}/${id}`, {
           status: status1,
+          assigned: "",
         })
         .then(function (response) {
           console.log(response);
@@ -99,6 +118,7 @@ export default {
     } catch (e) {
       this.errors.push(e);
     }
+    this.reqbasedonUser;
   },
 };
 </script>
@@ -137,12 +157,6 @@ export default {
           >
           <a class="dropdown-item" @click="checker(req.id, 'Denied')" href="#!"
             >Denied</a
-          >
-          <a
-            class="dropdown-item"
-            @click="checker(req.id, 'Assigned')"
-            href="#!"
-            >Assigned</a
           >
         </div>
       </div>
@@ -186,17 +200,18 @@ export default {
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a
+            v-if="req.status == 'Approved'"
             class="dropdown-item"
-            @click="checker(req.id, 'Signed Up')"
-            href="#!"
+            @click="checker(req.id, 'Assigned')"
             >Sign Up</a
           >
           <a
+            v-if="req.status == 'Assigned'"
             class="dropdown-item"
             @click="checker(req.id, 'Finished')"
-            href="#!"
             >Finish</a
           >
+          <a v-else class="dropdown-item">Wait for Director</a>
         </div>
       </div>
     </td>

@@ -1,206 +1,12 @@
 {
   "users": [
     {
-      "id": 0,
-      "name": "vah",
-      "email": null,
-      "role": "null",
-      "inactive": false,
-      "status": "Approved"
-    },
-    {
       "id": 1,
       "name": "Aurelia Nolan",
       "email": "Isadore94@gmail.com",
       "role": "Spirit Director",
       "inactive": true,
       "status": "Approved"
-    },
-    {
-      "id": 2,
-      "name": "Gino Simoni",
-      "email": "Ubaldo.Durgan@gmail.com",
-      "role": "SuperFrog Student",
-      "inactive": false
-    },
-    {
-      "id": 3,
-      "name": "Derek Howe",
-      "email": "Hester_Goyette43@yahoo.com",
-      "role": "SuperFrog Student",
-      "inactive": false
-    },
-    {
-      "id": 4,
-      "name": "Bo Gorczany",
-      "email": "Misael.Schuster@yahoo.com",
-      "role": "SuperFrog Student",
-      "inactive": false
-    },
-    {
-      "id": 5,
-      "name": "Kelley Russel",
-      "email": "Gwen87@gmail.com",
-      "role": "assumenda",
-      "inactive": true
-    },
-    {
-      "id": 6,
-      "name": "Ibrahim Kuphal",
-      "email": "Orie.Schumm95@hotmail.com",
-      "role": "dolor",
-      "inactive": false
-    },
-    {
-      "id": 7,
-      "name": "Tia Veum",
-      "email": "Miles.Ferry72@yahoo.com",
-      "role": "velit",
-      "inactive": true
-    },
-    {
-      "id": 8,
-      "name": "Marshall Buckridge",
-      "email": "Corbin.Wunsch71@hotmail.com",
-      "role": "et",
-      "inactive": true
-    },
-    {
-      "id": 9,
-      "name": "Zachery Wolf",
-      "email": "Ted.Renner@yahoo.com",
-      "role": "SuperFrog Student",
-      "inactive": true
-    },
-    {
-      "name": "tanm",
-      "id": 10,
-      "inactive": true
-    },
-    {
-      "name": "Hello",
-      "email": "xyz@gmail.com",
-      "role": "ok",
-      "inactive": false,
-      "id": 11
-    },
-    {
-      "name": "k",
-      "email": "h",
-      "role": "jh",
-      "inactive": true,
-      "id": 12
-    },
-    {
-      "name": "Kejr",
-      "email": "ygsuy@gmail.com",
-      "role": "Admin",
-      "inactive": false,
-      "id": 13
-    },
-    {
-      "name": "Bao",
-      "email": "t@gmail.com",
-      "role": "Director",
-      "inactive": false,
-      "id": 14
-    },
-    {
-      "name": "jerry ",
-      "email": "t@gmail.com",
-      "role": "Admin",
-      "inactive": false,
-      "id": 15
-    },
-    {
-      "name": null,
-      "email": null,
-      "role": null,
-      "inactive": false,
-      "id": 16
-    },
-    {
-      "name": null,
-      "email": null,
-      "role": null,
-      "inactive": false,
-      "id": 17
-    },
-    {
-      "name": "asbhus",
-      "email": "fbdsg",
-      "role": "jhdf jhd ",
-      "inactive": false,
-      "id": 18
-    },
-    {
-      "name": null,
-      "email": null,
-      "role": null,
-      "inactive": false,
-      "id": 19
-    },
-    {
-      "name": null,
-      "email": null,
-      "role": null,
-      "inactive": false,
-      "id": 20
-    },
-    {
-      "name": "samuel",
-      "email": "k",
-      "role": "k",
-      "inactive": true,
-      "id": 21
-    },
-    {
-      "name": "Katy",
-      "email": "katy@gmail.com",
-      "role": "k",
-      "inactive": false,
-      "id": 22
-    },
-    {
-      "name": "jerrywu",
-      "email": "jerrywu@gmail.com",
-      "role": "SuperFrog Student",
-      "inactive": false,
-      "id": 23
-    },
-    {
-      "name": "Party",
-      "location": "dhe",
-      "theme": "iue",
-      "date": "2022-04-13T05:00:00.000Z",
-      "stime": "2022-04-19T01:32:01.000Z",
-      "etime": "2022-04-19T03:31:09.000Z",
-      "Description": "ebehbfhebf",
-      "email": "fjhbjerbf@gmail.com",
-      "status": "created",
-      "id": 24,
-      "inactive": true
-    },
-    {
-      "name": "",
-      "email": "",
-      "role": "",
-      "inactive": false,
-      "id": 25
-    },
-    {
-      "name": "",
-      "email": "",
-      "role": "",
-      "inactive": false,
-      "id": 26
-    },
-    {
-      "name": "",
-      "email": "",
-      "role": "",
-      "inactive": false,
-      "id": 27
     },
     {
       "name": "Sahil",
@@ -233,126 +39,34 @@
   ],
   "requests": [
     {
-      "id": 0,
       "name": "Sahil",
-      "location": "MT",
-      "theme": "OK",
-      "date": "02/11/78",
-      "stime": "3;40",
-      "etime": "4:40",
-      "desc": "jdcwbijrb",
-      "email": "t@gmail.com",
-      "status": "Assigned",
-      "assigned": "Kaly"
-    },
-    {
-      "id": 1,
-      "name": "test",
-      "location": "MT",
-      "theme": "OK",
-      "date": "02/11/78",
-      "stime": "3;40",
-      "etime": "4:40",
-      "desc": "jdcwbijrb",
-      "email": "t@gmail.com",
-      "status": "Signed Up",
-      "assigned": "Samuel"
-    },
-    {
-      "name": "Vanshika",
-      "id": 2,
-      "status": "Assigned",
-      "assigned": "Kartik"
-    },
-    {
-      "name": "Hello",
-      "lname": "Test",
-      "location": "Fortworth",
+      "lname": "Kej",
+      "location": "San Francisco",
       "theme": "Barbie",
-      "stime": "13:27",
-      "etime": "17:25",
-      "desc": "jkbjhsbjqv",
+      "stime": "23:40",
+      "etime": "16:41",
+      "desc": "beuyvwve",
+      "email": "sahil@gmail.com",
+      "ename": "Birthday Party",
+      "date": "2022-04-22",
+      "status": "Denied",
+      "assigned": "",
+      "id": 1
+    },
+    {
+      "name": "TK",
+      "lname": "K",
+      "location": "jhbehbew",
+      "theme": "bewuhbf",
+      "stime": "12:27",
+      "etime": "00:26",
+      "desc": "hgvfevf",
       "email": "xyz@gmail.com",
-      "ename": "jhdbjhb",
-      "date": "2022-03-30",
-      "status": "Approved",
-      "assigned": "Not Assigned Yet",
-      "id": 3
-    },
-    {
-      "name": "hbbjh",
-      "lname": "",
-      "location": "",
-      "theme": "",
-      "stime": "",
-      "etime": "",
-      "desc": "",
-      "email": "",
-      "ename": "",
-      "date": "",
+      "ename": "KEJ",
+      "date": "2022-04-08",
       "status": "Assigned",
-      "assigned": "Kaly",
-      "id": 4
-    },
-    {
-      "name": "hbbjh",
-      "lname": "",
-      "location": "",
-      "theme": "",
-      "stime": "",
-      "etime": "",
-      "desc": "",
-      "email": "",
-      "ename": "",
-      "date": "",
-      "status": "Finished",
       "assigned": "Not Assigned Yet",
-      "id": 5
-    },
-    {
-      "name": "qbdbqjeh",
-      "lname": "ehfjbefjehbf",
-      "location": "qehbfjheqfbjh",
-      "theme": "hbejhfbehqb",
-      "stime": "",
-      "etime": "",
-      "desc": "",
-      "email": "dhjbehfbehfb",
-      "ename": "qejbfejhfbebf",
-      "date": "",
-      "status": "Assigned",
-      "assigned": "Kartik",
-      "id": 6
-    },
-    {
-      "name": "",
-      "lname": "",
-      "location": "",
-      "theme": "",
-      "stime": "",
-      "etime": "",
-      "desc": "",
-      "email": "",
-      "ename": "",
-      "date": "",
-      "status": "Created",
-      "assigned": "Not Assigned Yet",
-      "id": 7
-    },
-    {
-      "name": "kqjkb",
-      "lname": "",
-      "location": "",
-      "theme": "",
-      "stime": "",
-      "etime": "",
-      "desc": "",
-      "email": "",
-      "ename": "",
-      "date": "",
-      "status": "Created",
-      "assigned": "Not Assigned Yet",
-      "id": 8
+      "id": 2
     }
   ],
   "superfrogs": [

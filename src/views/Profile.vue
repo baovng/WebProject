@@ -17,7 +17,10 @@
               <div class="col-xl-12">
                 <!-- Account details card-->
                 <div class="card mb-4">
-                  <div class="card-header">Account Details</div>
+                  <div class="card-header">
+                    Account Details
+                    <p>Logged in as {{ lusername }}</p>
+                  </div>
                   <div class="card-body">
                     <form>
                       <!-- Form Row-->
@@ -154,7 +157,7 @@
                 </tr>
               </thead>
               <tbody id="userTableBody">
-                <Requests :role="role"></Requests>
+                <Requests :role="role" :username="lusername"></Requests>
               </tbody>
             </table>
           </div>
@@ -190,6 +193,7 @@ export default {
   data() {
     return {
       role: "SuperFrog",
+      lusername: "Kaly",
     };
   },
   components: {
