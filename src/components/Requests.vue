@@ -44,7 +44,6 @@ export default {
 
   methods: {
     async checker(id, status1) {
-      alert(this.role);
       this.requests = this.requests.map((req) => {
         if (req.id === id) {
           req.status = status1;
@@ -149,6 +148,111 @@ export default {
             href="#!"
             >Finish</a
           >
+        </div>
+      </div>
+    </td>
+    <!-- <td>
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModalCenter"
+      >
+        View
+      </button>
+    </td>
+    <div
+      class="modal fade"
+      id="exampleModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">
+              Vertically Centered Modal
+            </h5>
+            <button
+              class="btn-close"
+              type="button"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+              <div class="step mb-5">
+        <div class="step-item" :class="req.status == 'Created' ? 'active' : ''">
+          <a class="step-item-link" href="#!">Created</a>
+        </div>
+        <div
+          class="step-item"
+          :class="req.status == 'Approved' ? 'active' : ''"
+        >
+          <a class="step-item-link" href="#!">Approved</a>
+        </div>
+        <div
+          class="step-item"
+          :class="req.status == 'Signed Up' ? 'active' : ''"
+        >
+          <a class="step-item-link" href="#!">Signed Up</a>
+        </div>
+        <div
+          class="step-item"
+          :class="req.status == 'Assigned' ? 'active' : ''"
+        >
+          <a class="step-item-link" href="#!">Assigned</a>
+        </div>
+        <div
+          class="step-item"
+          :class="req.status == 'Finished' ? 'active' : ''"
+        >
+          <a class="step-item-link" href="#!">Finished</a>
+        </div>
+      </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-bs-dismiss="modal"
+            >
+              Close</button
+            ><button class="btn btn-primary" type="button">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <td>
+      <div class="step mb-5">
+        <div class="step-item" :class="req.status == 'Created' ? 'active' : ''">
+          <a class="step-item-link" href="#!">Created</a>
+        </div>
+        <div
+          class="step-item"
+          :class="req.status == 'Approved' ? 'active' : ''"
+        >
+          <a class="step-item-link" href="#!">Approved</a>
+        </div>
+        <div
+          class="step-item"
+          :class="req.status == 'Signed Up' ? 'active' : ''"
+        >
+          <a class="step-item-link" href="#!">Signed Up</a>
+        </div>
+        <div
+          class="step-item"
+          :class="req.status == 'Assigned' ? 'active' : ''"
+        >
+          <a class="step-item-link" href="#!">Assigned</a>
+        </div>
+        <div
+          class="step-item"
+          :class="req.status == 'Finished' ? 'active' : ''"
+        >
+          <a class="step-item-link" href="#!">Finished</a>
         </div>
       </div>
     </td>

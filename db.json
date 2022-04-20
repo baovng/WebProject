@@ -242,7 +242,7 @@
       "etime": "4:40",
       "desc": "jdcwbijrb",
       "email": "t@gmail.com",
-      "status": "Signed Up",
+      "status": "Assigned",
       "assigned": "Samuel"
     },
     {
@@ -261,7 +261,7 @@
     {
       "name": "Vanshika",
       "id": 2,
-      "status": "Assigned"
+      "status": "Finished"
     },
     {
       "name": "Hello",
@@ -304,7 +304,7 @@
       "email": "",
       "ename": "",
       "date": "",
-      "status": "Created",
+      "status": "Finished",
       "assigned": "Not Assigned Yet",
       "id": 5
     },
@@ -319,7 +319,7 @@
       "email": "dhjbehfbehfb",
       "ename": "qejbfejhfbebf",
       "date": "",
-      "status": "Created",
+      "status": "Assigned",
       "assigned": "Not Assigned Yet",
       "id": 6
     },
