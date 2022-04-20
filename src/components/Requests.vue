@@ -57,7 +57,6 @@ export default {
       if (this.role == "SuperFrog") {
         this.requests = this.filteredreq;
       }
-      console.log(this.requests);
     },
 
     superfrogPopulate() {

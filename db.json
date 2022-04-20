@@ -3,13 +3,23 @@
     {
       "id": 1,
       "name": "Kartik",
-      "email": "tanmay kejriwal28@gmail.com",
-      "role": "Spirit Director",
-      "inactive": false
+      "lname": "Michael",
+      "email": "tanmaykejriwal28@gmail.com",
+      "role": "Customer",
+      "password": "password",
+      "inactive": true
     },
     {
       "name": "Test",
       "email": "xyz@gmail.com",
+      "role": "SuperFrog",
+      "inactive": false,
+      "lname": "perry",
+      "id": 2
+    },
+    {
+      "name": "xyk",
+      "email": "xyk@gmail.com",
       "role": "SuperFrog",
       "inactive": false,
       "id": 2

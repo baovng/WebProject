@@ -19,7 +19,7 @@
                 <div class="card mb-4">
                   <div class="card-header">
                     Account Details
-                    <p>Logged in as {{ lusername }}</p>
+                    <p>Logged in as {{ lusername }} ({{ role }})</p>
                   </div>
                   <div class="card-body">
                     <form>
@@ -34,8 +34,7 @@
                             class="form-control"
                             id="inputFirstName"
                             type="text"
-                            placeholder="Enter your first name"
-                            value="Valerie"
+                            v-model="fname"
                           />
                         </div>
                         <!-- Form Group (last name)-->
@@ -47,40 +46,12 @@
                             class="form-control"
                             id="inputLastName"
                             type="text"
-                            placeholder="Enter your last name"
-                            value="Luna"
+                            v-model="lname"
                           />
                         </div>
                       </div>
                       <!-- Form Row        -->
-                      <div class="row gx-3 mb-3">
-                        <!-- Form Group (organization name)-->
-                        <div class="col-md-6">
-                          <label class="small mb-1" for="inputOrgName"
-                            >Phone Number</label
-                          >
-                          <input
-                            class="form-control"
-                            id="inputOrgName"
-                            type="phone"
-                            placeholder="Enter your organization name"
-                            value="(857)763-684X"
-                          />
-                        </div>
-                        <!-- Form Group (location)-->
-                        <div class="col-md-6">
-                          <label class="small mb-1" for="inputLocation"
-                            >Location</label
-                          >
-                          <input
-                            class="form-control"
-                            id="inputLocation"
-                            type="text"
-                            placeholder="Enter your location"
-                            value="San Francisco, CA"
-                          />
-                        </div>
-                      </div>
+
                       <!-- Form Group (email address)-->
                       <div class="mb-3">
                         <label class="small mb-1" for="inputEmailAddress"
@@ -89,9 +60,8 @@
                         <input
                           class="form-control"
                           id="inputEmailAddress"
-                          type="email"
-                          placeholder="Enter your email address"
-                          value="name@example.com"
+                          type="text"
+                          v-model="input_email"
                         />
                       </div>
                       <!-- Form Row-->
@@ -194,11 +164,34 @@ export default {
     return {
       role: "SuperFrog",
       lusername: "Kartik",
+      email: "xyk@gmail.com",
+      loggedInUser: {},
+      fname: "",
+      lname: "",
+      input_email: "",
     };
   },
   components: {
     Requests,
   },
   methods: {},
+  computed: {},
+  async created() {
+    try {
+      const response = await axios.get(`http://localhost:3000/users`);
+      this.users = response.data;
+      for (var i = 0; i < this.users.length; i++) {
+        if (this.users[i].email == this.email) {
+          this.loggedInUser = this.users[i];
+        }
+      }
+      //binding values
+      this.fname = this.loggedInUser.name;
+      this.lname = this.loggedInUser.lname;
+      this.input_email = this.loggedInUser.email;
+    } catch (e) {
+      this.errors.push(e);
+    }
+  },
 };
 </script>
