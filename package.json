@@ -1,0 +1,22 @@
+{
+  "name": "web-tech",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@jobinsjp/vue3-datatable": "^1.0.15",
+    "axios": "^0.26.1",
+    "primevue": "^3.12.5",
+    "simple-datatables": "^3.2.0",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.14"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.1",
+    "vite": "^2.9.5"
+  }
+}
