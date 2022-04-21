@@ -27,7 +27,7 @@
     },
     {
       "name": "Vanshika",
-      "email": "tanmaykejriwal28@gmail.com",
+      "email": "test28@gmail.com",
       "role": "SuperFrog",
       "inactive": false,
       "id": 4
@@ -53,8 +53,8 @@
       "email": "sahil@gmail.com",
       "ename": "Birthday Party",
       "date": "2022-04-22",
-      "status": "Assigned",
-      "assigned": "tanmaykejriwal28@gmail.com",
+      "status": "Approved",
+      "assigned": "",
       "id": 1
     },
     {

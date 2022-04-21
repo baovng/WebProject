@@ -11,9 +11,6 @@
 
             <hr class="mt-0 mb-4" />
             <div class="row">
-              <div class="col-xl-4">
-                <!-- Profile picture card-->
-              </div>
               <div class="col-xl-12">
                 <!-- Account details card-->
                 <div class="card mb-4">

@@ -256,7 +256,7 @@ export default {
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Update Status
+          Status
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a
@@ -283,7 +283,7 @@ export default {
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Assign SuperFrog
+          Assign
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <a
