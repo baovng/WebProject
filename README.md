@@ -8,5 +8,8 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 # frontend-webtech
 
 
-1. npm i 
-2. npm run dev
+# Commands to run
+
+1. json-server --watch db.json
+2. npm i 
+3. npm run dev
