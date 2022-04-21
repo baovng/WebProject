@@ -19,7 +19,7 @@
                 <div class="card mb-4">
                   <div class="card-header">
                     Account Details
-                    <p>Logged in as {{ lusername }} ({{ role }})</p>
+                    <p>Logged in as {{ fname }} ({{ role }})</p>
                   </div>
                   <div class="card-body">
                     <form>
