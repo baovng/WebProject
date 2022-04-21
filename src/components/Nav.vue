@@ -23,6 +23,9 @@
           <router-link class="nav-link" to="/dashboardSD"
             >Dashboard(SD)</router-link
           >
+          <router-link class="nav-link" to="/customer"
+            >Customer</router-link
+          >
         </div>
       </div>
     </div>

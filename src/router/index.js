@@ -9,6 +9,7 @@ import SignUp from "../views/SignUp.vue";
 import Profile from "../views/Profile.vue";
 import DashboardSD from "../views/DashboardSD.vue";
 import ErrorP from "../views/Error.vue";
+import Customer from "../views/Customer.vue"
 // Create the router instance
 const router = createRouter({
   // Provide the history implementation to use.
@@ -23,6 +24,7 @@ const router = createRouter({
     { path: "/profile", name: "profile", component: Profile },
     { path: "/dashboardSD", name: "dashboardSD", component: DashboardSD },
     { path: "/error", name: "error", component: ErrorP },
+    { path: "/customer", name: "error", component: Customer },
   ],
 });
 

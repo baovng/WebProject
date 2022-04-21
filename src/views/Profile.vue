@@ -125,13 +125,15 @@
                   <th scope="col">Theme</th>
                   <th scope="col">Description</th>
                   <th scope="col">Email</th>
+                  <th scope="col">Location</th>
                   <th scope="col">Super Frog Assigned</th>
                   <th scope="col">Status</th>
                   <th scope="col">Actions</th>
+                  <th scope="col">Progress</th>
                 </tr>
               </thead>
               <tbody id="userTableBody">
-                <Requests :role="role" :username="lusername"></Requests>
+                <Requests :role="role" :username="email"></Requests>
               </tbody>
             </table>
           </div>
@@ -167,7 +169,7 @@ export default {
   data() {
     return {
       role: "SuperFrog",
-      lusername: "Kartik",
+      lusername: "Vanshika",
       email: "xyk@gmail.com",
       loggedInUser: {},
       fname: "",

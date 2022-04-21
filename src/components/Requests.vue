@@ -26,7 +26,7 @@ export default {
       admin: 0,
       superfrog: 0,
       customer: 0,
-      current:"",
+      current: '',
     }
   },
   props: {
@@ -48,14 +48,26 @@ export default {
 
     reqbasedonUser() {
       for (var i = 0; i < this.requests.length; i++) {
-        if (
-          this.requests[i].assigned == this.username ||
-          this.requests[i].status == 'Approved'
-        ) {
-          this.filteredreq.push(this.requests[i])
+        if (this.role == 'SuperFrog') {
+          if (
+            this.requests[i].assigned == this.username ||
+            this.requests[i].status == 'Approved'
+          ) {
+            this.filteredreq.push(this.requests[i])
+          }
+        }
+        if (this.role == 'Customer') {
+          if (
+            this.requests[i].email == this.username
+          ) {
+            this.filteredreq.push(this.requests[i])
+          }
         }
       }
       if (this.role == 'SuperFrog') {
+        this.requests = this.filteredreq
+      }
+      if (this.role == 'Customer') {
         this.requests = this.filteredreq
       }
     },
@@ -73,18 +85,18 @@ export default {
   },
 
   methods: {
-    async assigner(reqid, frogid, name) {
+    async assigner(reqid, frogid, email) {
       this.requests = this.requests.map((req) => {
         if (req.id === reqid) {
           req.status = 'Assigned'
-          req.assigned = name
+          req.assigned = email
         }
         return req
       })
       await axios
         .patch(`${`http://localhost:3000/requests`}/${reqid}`, {
           status: 'Assigned',
-          assigned: name,
+          assigned: email,
         })
         .then(function (response) {
           console.log(response)
@@ -119,16 +131,16 @@ export default {
           console.log(error)
         })
     },
-    viewProgress(id){
-      var curr_status=""
+    viewProgress(id) {
+      var curr_status = ''
       for (var i = 0; i < this.requests.length; i++) {
-        if(this.requests[i].id==id){
-          curr_status=this.requests[i].status
+        if (this.requests[i].id == id) {
+          curr_status = this.requests[i].status
         }
       }
-      console.log(curr_status);
-      this.current=curr_status
-    }
+      console.log(curr_status)
+      this.current = curr_status
+    },
   },
 
   mounted() {
@@ -176,29 +188,40 @@ export default {
         </div>
         <div class="modal-body">
           <div class="step mb-5">
-            <div class="step-item" :class="current == 'Created' ? 'active' : ''">
+            <div
+              class="step-item"
+              :class="current == 'Created' ? 'active' : ''"
+            >
               <a class="step-item-link" href="">Created</a>
             </div>
-            <div class="step-item" :class="current == 'Approved' ? 'active' : ''" >
+            <div
+              class="step-item"
+              :class="current == 'Approved' ? 'active' : ''"
+            >
               <a class="step-item-link" href="">Approved</a>
             </div>
-            <div class="step-item"  :class="current == 'Signed Up' ? 'active' : ''" >
+            <div
+              class="step-item"
+              :class="current == 'Signed Up' ? 'active' : ''"
+            >
               <a class="step-item-link" href="">Signed Up</a>
             </div>
-            <div class="step-item" :class="current == 'Assigned' ? 'active' : ''">
+            <div
+              class="step-item"
+              :class="current == 'Assigned' ? 'active' : ''"
+            >
               <a class="step-item-link" href="">Assigned</a>
             </div>
-            <div class="step-item" :class="current == 'Finished' ? 'active' : ''">
+            <div
+              class="step-item"
+              :class="current == 'Finished' ? 'active' : ''"
+            >
               <a class="step-item-link" href="">Finished</a>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button
-            class="btn btn-secondary"
-            type="button"
-            data-bs-dismiss="modal"
-          >
+          <button class="btn btn-primary" type="button" data-bs-dismiss="modal">
             Close
           </button>
         </div>
@@ -215,7 +238,7 @@ export default {
     <td scope="col">{{ req.etime }}</td>
     <td scope="col">{{ req.theme }}</td>
     <td scope="col">{{ req.desc }}</td>
-    <td scope="col">{{ req.desc }}</td>
+    <td scope="col">{{ req.email }}</td>
     <td scope="col">{{ req.location }}</td>
     <td scope="col">{{ req.assigned }}</td>
     <td scope="col">{{ req.status }}</td>
@@ -263,7 +286,7 @@ export default {
             class="dropdown-item"
             v-for="frog in superfrogs"
             :key="frog.id"
-            @click="assigner(req.id, frog.id, frog.name)"
+            @click="assigner(req.id, frog.id, frog.email)"
           >
             {{ frog.name }}
           </a>
