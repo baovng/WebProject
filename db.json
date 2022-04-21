@@ -35,7 +35,7 @@
     {
       "name": "Wei",
       "email": "test@gmail.com",
-      "role": "Customer",
+      "role": "SuperFrog",
       "inactive": false,
       "id": 5,
       "lname": "Bei"
@@ -53,8 +53,8 @@
       "email": "sahil@gmail.com",
       "ename": "Birthday Party",
       "date": "2022-04-22",
-      "status": "Approved",
-      "assigned": "",
+      "status": "Assigned",
+      "assigned": "tanmaykejriwal28@gmail.com",
       "id": 1
     },
     {
@@ -68,8 +68,8 @@
       "email": "xyz@gmail.com",
       "ename": "KEJ",
       "date": "2022-04-08",
-      "status": "Approved",
-      "assigned": "",
+      "status": "Finished",
+      "assigned": "xyk@gmail.com",
       "id": 2
     },
     {

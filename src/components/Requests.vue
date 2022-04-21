@@ -110,7 +110,7 @@ export default {
       this.requests = this.requests.map((req) => {
         if (req.id === id) {
           req.status = status1
-          if (status1 == 'Assigned') {
+          if (status1 == 'Assigned' || status1 == 'Finished') {
             temp = this.username
           } else {
             temp = ''
@@ -141,6 +141,10 @@ export default {
       console.log(curr_status)
       this.current = curr_status
     },
+
+    onceAWeek(){
+
+    }
   },
 
   mounted() {

@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import Rows from "../components/Rows.vue";
 import Requests from "../components/Requests.vue";
+import Reports from "../components/Reports.vue"
 
 import axios from "axios";
 
@@ -20,6 +21,7 @@ export default {
   components: {
     Rows,
     Requests,
+    Reports
   },
   methods: {
     addUser() {
@@ -241,6 +243,7 @@ export default {
           <Requests :role="role"></Requests>
         </tbody>
       </table>
+      <Reports></Reports>
     </div>
   </body>
 </template>
