@@ -13,10 +13,10 @@
 //   $('#myInput').trigger('focus')
 // })
 
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "Requests",
+  name: 'Requests',
   data() {
     return {
       requests: [],
@@ -26,7 +26,8 @@ export default {
       admin: 0,
       superfrog: 0,
       customer: 0,
-    };
+      current:"",
+    }
   },
   props: {
     role: String,
@@ -34,14 +35,14 @@ export default {
   },
   computed: {
     roledecider() {
-      if (this.role == "Admin") {
-        this.admin = 1;
+      if (this.role == 'Admin') {
+        this.admin = 1
       }
-      if (this.role == "SuperFrog") {
-        this.superfrog = 1;
+      if (this.role == 'SuperFrog') {
+        this.superfrog = 1
       }
-      if (this.role == "Customer") {
-        this.customer = 1;
+      if (this.role == 'Customer') {
+        this.customer = 1
       }
     },
 
@@ -49,23 +50,23 @@ export default {
       for (var i = 0; i < this.requests.length; i++) {
         if (
           this.requests[i].assigned == this.username ||
-          this.requests[i].status == "Approved"
+          this.requests[i].status == 'Approved'
         ) {
-          this.filteredreq.push(this.requests[i]);
+          this.filteredreq.push(this.requests[i])
         }
       }
-      if (this.role == "SuperFrog") {
-        this.requests = this.filteredreq;
+      if (this.role == 'SuperFrog') {
+        this.requests = this.filteredreq
       }
     },
 
     superfrogPopulate() {
       for (var i = 0; i < this.users.length; i++) {
         if (
-          this.users[i].role == "SuperFrog" &&
+          this.users[i].role == 'SuperFrog' &&
           this.users[i].inactive == false
         ) {
-          this.superfrogs.push(this.users[i]);
+          this.superfrogs.push(this.users[i])
         }
       }
     },
@@ -75,72 +76,137 @@ export default {
     async assigner(reqid, frogid, name) {
       this.requests = this.requests.map((req) => {
         if (req.id === reqid) {
-          req.status = "Assigned";
-          req.assigned = name;
+          req.status = 'Assigned'
+          req.assigned = name
         }
-        return req;
-      });
+        return req
+      })
       await axios
         .patch(`${`http://localhost:3000/requests`}/${reqid}`, {
-          status: "Assigned",
+          status: 'Assigned',
           assigned: name,
         })
         .then(function (response) {
-          console.log(response);
+          console.log(response)
         })
         .catch(function (error) {
-          console.log(error);
-        });
+          console.log(error)
+        })
     },
     async checker(id, status1) {
-      var temp = "";
+      var temp = ''
       this.requests = this.requests.map((req) => {
         if (req.id === id) {
-          req.status = status1;
-          if (status1 == "Assigned") {
-            temp = this.username;
+          req.status = status1
+          if (status1 == 'Assigned') {
+            temp = this.username
           } else {
-            temp = "";
+            temp = ''
           }
-          req.assigned = temp;
+          req.assigned = temp
         }
-        return req;
-      });
+        return req
+      })
       await axios
         .patch(`${`http://localhost:3000/requests`}/${id}`, {
           status: status1,
           assigned: temp,
         })
         .then(function (response) {
-          console.log(response);
+          console.log(response)
         })
         .catch(function (error) {
-          console.log(error);
-        });
+          console.log(error)
+        })
     },
+    viewProgress(id){
+      var curr_status=""
+      for (var i = 0; i < this.requests.length; i++) {
+        if(this.requests[i].id==id){
+          curr_status=this.requests[i].status
+        }
+      }
+      console.log(curr_status);
+      this.current=curr_status
+    }
   },
 
   mounted() {
-    this.roledecider;
+    this.roledecider
   },
   // Fetches posts when the component is created.
   async created() {
     try {
-      const response = await axios.get(`http://localhost:3000/requests`);
-      const response_super = await axios.get(`http://localhost:3000/users`);
-      this.users = response_super.data;
-      this.requests = response.data;
+      const response = await axios.get(`http://localhost:3000/requests`)
+      const response_super = await axios.get(`http://localhost:3000/users`)
+      this.users = response_super.data
+      this.requests = response.data
     } catch (e) {
-      this.errors.push(e);
+      this.errors.push(e)
     }
-    this.reqbasedonUser;
-    this.superfrogPopulate;
+    this.reqbasedonUser
+    this.superfrogPopulate
   },
-};
+}
 </script>
 
 <template>
   <!-- Modal -->
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModalCenter"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">
+            Progress
+          </h5>
+          <button
+            class="btn-close"
+            type="button"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="step mb-5">
+            <div class="step-item" :class="current == 'Created' ? 'active' : ''">
+              <a class="step-item-link" href="">Created</a>
+            </div>
+            <div class="step-item" :class="current == 'Approved' ? 'active' : ''" >
+              <a class="step-item-link" href="">Approved</a>
+            </div>
+            <div class="step-item"  :class="current == 'Signed Up' ? 'active' : ''" >
+              <a class="step-item-link" href="">Signed Up</a>
+            </div>
+            <div class="step-item" :class="current == 'Assigned' ? 'active' : ''">
+              <a class="step-item-link" href="">Assigned</a>
+            </div>
+            <div class="step-item" :class="current == 'Finished' ? 'active' : ''">
+              <a class="step-item-link" href="">Finished</a>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-secondary"
+            type="button"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal End -->
   <tr v-for="req in requests" :key="req.id">
     <td scope="col">{{ req.id }}</td>
     <td scope="col">{{ req.ename }}</td>
@@ -149,7 +215,8 @@ export default {
     <td scope="col">{{ req.etime }}</td>
     <td scope="col">{{ req.theme }}</td>
     <td scope="col">{{ req.desc }}</td>
-    <td scope="col">{{ req.email }}</td>
+    <td scope="col">{{ req.desc }}</td>
+    <td scope="col">{{ req.location }}</td>
     <td scope="col">{{ req.assigned }}</td>
     <td scope="col">{{ req.status }}</td>
     <td v-if="admin" scope="col">
@@ -169,11 +236,12 @@ export default {
             @click="checker(req.id, 'Approved')"
             class="dropdown-item"
             href="#!"
-            >Approved</a
           >
-          <a class="dropdown-item" @click="checker(req.id, 'Denied')" href="#!"
-            >Denied</a
-          >
+            Approved
+          </a>
+          <a class="dropdown-item" @click="checker(req.id, 'Denied')" href="#!">
+            Denied
+          </a>
         </div>
       </div>
     </td>
@@ -196,8 +264,9 @@ export default {
             v-for="frog in superfrogs"
             :key="frog.id"
             @click="assigner(req.id, frog.id, frog.name)"
-            >{{ frog.name }}</a
           >
+            {{ frog.name }}
+          </a>
         </div>
       </div>
     </td>
@@ -219,125 +288,33 @@ export default {
             v-if="req.status == 'Approved'"
             class="dropdown-item"
             @click="checker(req.id, 'Assigned')"
-            >Sign Up</a
           >
+            Sign Up
+          </a>
           <a
             v-if="req.status == 'Assigned'"
             class="dropdown-item"
             @click="checker(req.id, 'Finished')"
-            >Finish</a
           >
-          <a v-if="req.status == 'Finished' || req.status == 'Denied'"
-            >Already Finished</a
-          >
+            Finish
+          </a>
+          <a v-if="req.status == 'Finished' || req.status == 'Denied'">
+            Already Finished
+          </a>
           <a v-else class="dropdown-item">Wait for Director</a>
         </div>
       </div>
     </td>
-    <!-- <td>
+    <td>
       <button
         class="btn btn-primary"
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#exampleModalCenter"
+        @click="viewProgress(req.id)"
       >
         View
       </button>
-    </td>
-    <div
-      class="modal fade"
-      id="exampleModalCenter"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalCenterTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">
-              Vertically Centered Modal
-            </h5>
-            <button
-              class="btn-close"
-              type="button"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-              <div class="step mb-5">
-        <div class="step-item" :class="req.status == 'Created' ? 'active' : ''">
-          <a class="step-item-link" href="#!">Created</a>
-        </div>
-        <div
-          class="step-item"
-          :class="req.status == 'Approved' ? 'active' : ''"
-        >
-          <a class="step-item-link" href="#!">Approved</a>
-        </div>
-        <div
-          class="step-item"
-          :class="req.status == 'Signed Up' ? 'active' : ''"
-        >
-          <a class="step-item-link" href="#!">Signed Up</a>
-        </div>
-        <div
-          class="step-item"
-          :class="req.status == 'Assigned' ? 'active' : ''"
-        >
-          <a class="step-item-link" href="#!">Assigned</a>
-        </div>
-        <div
-          class="step-item"
-          :class="req.status == 'Finished' ? 'active' : ''"
-        >
-          <a class="step-item-link" href="#!">Finished</a>
-        </div>
-      </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-secondary"
-              type="button"
-              data-bs-dismiss="modal"
-            >
-              Close</button
-            ><button class="btn btn-primary" type="button">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <td>
-      <div class="step mb-5">
-        <div class="step-item" :class="req.status == 'Created' ? 'active' : ''">
-          <a class="step-item-link" href="">Created</a>
-        </div>
-        <div
-          class="step-item"
-          :class="req.status == 'Approved' ? 'active' : ''"
-        >
-          <a class="step-item-link" href="">Approved</a>
-        </div>
-        <div
-          class="step-item"
-          :class="req.status == 'Signed Up' ? 'active' : ''"
-        >
-          <a class="step-item-link" href="">Signed Up</a>
-        </div>
-        <div
-          class="step-item"
-          :class="req.status == 'Assigned' ? 'active' : ''"
-        >
-          <a class="step-item-link" href="">Assigned</a>
-        </div>
-        <div
-          class="step-item"
-          :class="req.status == 'Finished' ? 'active' : ''"
-        >
-          <a class="step-item-link" href="">Finished</a>
-        </div>
-      </div>
     </td>
   </tr>
 </template>

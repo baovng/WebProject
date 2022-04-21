@@ -18,10 +18,10 @@
       "id": 2
     },
     {
-      "name": "Sam",
+      "name": "Micah",
       "email": "xyk@gmail.com",
       "role": "SuperFrog",
-      "inactive": false,
+      "inactive": true,
       "id": 3,
       "lname": "Callan"
     }
@@ -56,6 +56,21 @@
       "status": "Assigned",
       "assigned": "Kaly",
       "id": 2
+    },
+    {
+      "name": "Micah",
+      "lname": "Collins",
+      "location": "Fort Worth",
+      "theme": "Barbie",
+      "stime": "21:52",
+      "etime": "22:52",
+      "desc": "jdbebdh",
+      "email": "tk@gmail.com",
+      "ename": "Super Birthday",
+      "date": "2022-04-21",
+      "status": "Created",
+      "assigned": "Not Assigned Yet",
+      "id": 3
     }
   ],
   "superfrogs": [
