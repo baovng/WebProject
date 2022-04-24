@@ -18,12 +18,12 @@
           </div>
           <RouterLink to="/price">View Pricing</RouterLink>
         </div>
-        <div class="col-sm">
+        <div class="col-sm p-4">
            
           <div class="h1 text-uppercase font-weight-bold">Range</div>
           <div>We only service requests that are within 100 mile radius from Amon G. Carter Stadium.</div>
         </div>
-        <div class="col-sm">
+        <div class="col-sm p-4">
           
           <div class="h1 text-uppercase font-weight-bold">Request</div>
           <div>Request TCU Spirit from a calendar of available dates.</div>
