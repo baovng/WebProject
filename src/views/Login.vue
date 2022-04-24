@@ -13,7 +13,7 @@
                   </div>
                   <div class="card-body">
                     <!-- Login form-->
-                    <form>
+                    <form @submit.prevent="onLogin()">
                       <!-- Form Group (email address)-->
                       <div class="mb-3">
                         <label class="small mb-1" for="inputEmailAddress"
@@ -24,7 +24,12 @@
                           id="inputEmailAddress"
                           type="email"
                           placeholder="Enter email address"
+                          name="email"
+                          v-model.trim="email"
                         />
+                        <div class="alert alert-danger mt-3" role="alert" v-if="errors.email">
+                            {{ errors.email }}
+                        </div>
                       </div>
                       <!-- Form Group (password)-->
                       <div class="mb-3">
@@ -36,7 +41,12 @@
                           id="inputPassword"
                           type="password"
                           placeholder="Enter password"
+                          name="password"
+                          v-model.trim="password"
                         />
+                        <div class="alert alert-danger mt-3" role="alert" v-if="errors.password">
+                            {{ errors.password }}
+                        </div>
                       </div>
                       <!-- Form Group (remember password checkbox)-->
                       <div class="mb-3">
@@ -61,16 +71,18 @@
                         <a class="small" href="auth-password-basic.html"
                           >Forgot Password?</a
                         >
-                        <a class="btn btn-primary" href="dashboard-1.html"
-                          >Login</a
-                        >
+                        <button type="submit" class="btn btn-primary">
+                            Login
+                        </button>
+                          <!-- <router-link to="/dashboardSD" class="btn btn-primary"
+                          >Login</router-link> -->
                       </div>
                     </form>
                   </div>
                   <div class="card-footer text-center">
                     <div class="small">
-                      <a href="auth-register-basic.html"
-                        >Need an account? Sign up!</a
+                      <router-link to="/signup"
+                        >Need an account? Sign up!</router-link
                       >
                     </div>
                   </div>
@@ -101,5 +113,37 @@
 </template>
 
 <script>
-export default {};
+import SignupValidations from '../services/SignupValidations';
+  export default {
+      data(){
+        return{
+            email: '',
+            password: '',
+            errors: [],
+            error: '',
+        };
+      },
+      methods:{
+        onLogin(){
+          //check the validations
+          //i ( validation of) {
+            //do the signup
+          //}
+          //else show errors
+
+          let validations = new SignupValidations(
+                this.email,
+                this.password,
+            );
+            this.errors = validations.checkValidations();
+            if (this.errors.length) {
+                return false;
+            }
+            this.error = '';
+
+          //signup registration 
+        },
+      },
+    
+  };
 </script>
