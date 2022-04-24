@@ -99,8 +99,8 @@
                   </div>
                   <div class="card-footer text-center">
                     <div class="small">
-                      <a href="auth-login-basic.html"
-                        >Have an account? Go to login</a
+                      <router-link to="/login"
+                        >Have an account? Go to login</router-link
                       >
                     </div>
                   </div>
