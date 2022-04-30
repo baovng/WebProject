@@ -28,7 +28,7 @@ export default {
       var Name = this.inputName;
       var Email = this.inputEmail;
       var Role = this.selected;
-      const res = axios.post(`http://localhost:3000/users`, {
+      const res = axios.post(`https://superfrog-be.herokuapp.com/users`, {
         name: Name,
         email: Email,
         role: Role,

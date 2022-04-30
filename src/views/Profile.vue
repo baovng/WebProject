@@ -181,9 +181,9 @@ export default {
   methods: {
     async Update() {
       alert("k");
-      await axios.patch(`${`http://localhost:3000/users`}/${this.id}`, {
-        name: this.fname,
-        email: this.input_email,
+      await axios.patch(`${`https://superfrog-be.herokuapp.com/users`}/${this.id}`, {
+        name: this.name,
+        email: this.email,
         lname: this.lname,
       });
     },
@@ -191,7 +191,7 @@ export default {
 
   async created() {
     try {
-      const response = await axios.get(`http://localhost:3000/users`);
+      const response = await axios.get(`https://superfrog-be.herokuapp.com/users`);
       this.users = response.data;
       for (var i = 0; i < this.users.length; i++) {
         if (this.users[i].email == this.email) {

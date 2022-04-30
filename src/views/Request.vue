@@ -236,17 +236,17 @@ export default {
   methods: {
     addReq() {
       console.log(this.iname);
-      const res = axios.post(`http://localhost:3000/requests`, {
-        name: this.iname,
-        lname: this.ilname,
-        location: this.ilocation,
-        theme: this.itheme,
-        stime: this.istime,
-        etime: this.ietime,
-        desc: this.idesc,
-        email: this.iemail,
-        ename: this.ieventname,
-        date: this.idate,
+      const res = axios.post(`https://superfrog-be.herokuapp.com/requests`, {
+        name: this.name,
+        lname: this.lname,
+        location: this.location,
+        theme: this.theme,
+        stime: this.stime,
+        etime: this.etime,
+        desc: this.desc,
+        email: this.email,
+        ename: this.eventname,
+        date: this.date,
         status: "Created",
         assigned: "Not Assigned Yet",
       });
