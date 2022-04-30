@@ -94,7 +94,7 @@ export default {
         return req
       })
       await axios
-        .patch(`${`http://localhost:3000/requests`}/${reqid}`, {
+        .patch(`${`https://superfrog-be.herokuapp.com/requests`}/${reqid}`, {
           status: 'Assigned',
           assigned: email,
         })
@@ -120,7 +120,7 @@ export default {
         return req
       })
       await axios
-        .patch(`${`http://localhost:3000/requests`}/${id}`, {
+        .patch(`${`https://superfrog-be.herokuapp.com/requests`}/${id}`, {
           status: status1,
           assigned: temp,
         })
@@ -153,10 +153,10 @@ export default {
   // Fetches posts when the component is created.
   async created() {
     try {
-      const response = await axios.get(`http://localhost:3000/requests`)
-      const response_super = await axios.get(`http://localhost:3000/users`)
-      this.users = response_super.data
-      this.requests = response.data
+      const response = await axios.get(`https://superfrog-be.herokuapp.com/requests`)
+      const response_super = await axios.get(`https://superfrog-be.herokuapp.com/users`)
+      this.users = response_super.data.data
+      this.requests = response.data.data
     } catch (e) {
       this.errors.push(e)
     }

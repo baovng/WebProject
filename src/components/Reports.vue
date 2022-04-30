@@ -68,8 +68,8 @@ export default {
 
   async created() {
     try {
-      const response = await axios.get(`http://localhost:3000/requests`);
-      this.requests = response.data;
+      const response = await axios.get(`https://superfrog-be.herokuapp.com/requests`);
+      this.requests = response.data.data;
       
     } catch (e) {
       this.errors.push(e);

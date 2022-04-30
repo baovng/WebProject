@@ -34,7 +34,7 @@ export default {
     async deleteRow(id) {
       try {
         var curr_status = this.users[id - 1].inactive;
-        await axios.patch(`${`http://localhost:3000/users`}/${id}`, {
+        await axios.patch(`${`https://superfrog-be.herokuapp.com/users`}/${id}`, {
           inactive: !curr_status,
         });
         this.users = this.users.map((user) => {
@@ -63,7 +63,7 @@ export default {
       console.log(Name);
       try {
         var curr_status = this.users[id - 1].inactive;
-        await axios.patch(`${`http://localhost:3000/users`}/${id}`, {
+        await axios.patch(`${`https://superfrog-be.herokuapp.com/users`}/${id}`, {
           name: Name,
           email: Email,
           role: Role,
@@ -85,9 +85,9 @@ export default {
   // Fetches posts when the component is created.
   async created() {
     try {
-      const response = await axios.get(`http://localhost:3000/users`);
-      this.users = response.data;
-      //console.log(this.users)
+      const response = await axios.get(`https://superfrog-be.herokuapp.com/users`);
+      this.users = response.data.data;
+      console.log(this.users)
     } catch (e) {
       this.errors.push(e);
     }
